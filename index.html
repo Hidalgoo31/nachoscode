@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA - NACHOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .title-cards {
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+
+        .title-cards h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .container-card {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card figure {
+            margin: 0;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .contenido-card {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contenido-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+
+        .contenido-card p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .contenido-card a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .contenido-card a:hover {
+            background-color: #2980b9;
+        }
+
+        #orderForm {
+            background-color: white;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Efecto hover para el formulario */
+        #orderForm:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        #orderForm h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        form input[type="text"],
+        form input[type="number"],
+        form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efecto hover y focus en los campos del formulario */
+        form input[type="text"]:hover,
+        form input[type="number"]:hover,
+        form textarea:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            border-color: #ff6347;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="number"]:focus,
+        form textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        form input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #3498db;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>¡NACHOS CODE!</h1>
+    </header>
+
+    <div class="title-cards">
+        <h2>Servicios que Ofrecemos</h2>
+    </div>
+    
+    <div class="container-card">
+        <div class="card">
+            <figure>
+                <img src="https://encrypted-tbn0.gstatic.com/s?q=tbn%3AANd9GcRZ9DMNFHxwZcfPXJrJeBMITxPMP3FMZk_ixXzTfzt4G_C-G058"
+                    alt="Nachos y Elotes">
+            </figure>
+            <div class="contenido-card">
+                <h3>Comienza a ordenar tus nachos y elotes!</h3>
+                <p>Ordena tus nachos favoritos y añade elotes locos si deseas.</p>
+                <a href="#" id="orderBtn">Comienza a Ordenar</a>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="orderForm" style="display: none;">
+    <h1>Ordena tus Nachos y Elotes Locos</h1>
+<form action="process_order.php" method="post">
+    <label for="name">Nombre:</label>
+    <input type="text" name="name" id="name" required>
+
+    <h3>Ingredientes opcionales:</h3>
+    <div class="checkbox-group">
+        <div class="checkbox-item">
+            <input type="checkbox" name="carne" id="dobleCarne">
+            <img src="img/carne.png" alt="Carne">
+            <label for="dobleCarne">Doble Carne (+ $0.25)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" name="queso" id="queso">
+            <img src="img/quesooo-01.png" alt="Queso">
+            <label for="queso">Queso (+ $0.25)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" name="escabeche" id="escabeche">
+            <img src="img/curtido-01.png" alt="Escabeche">
+            <label for="escabeche">Escabeche (+ $0.25)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" name="jalapenos" id="jalapenos">
+            <img src="img/pimienta.png" alt="Jalapeños">
+            <label for="jalapenos">Jalapeños (+ $0.25)</label>
+        </div>
+
+        <div class="checkbox-item">
+            <input type="checkbox" name="cebolla" id="cebolla">
+            <img src="img/Cebolla-01.png" alt="Cebolla">
+            <label for="cebolla">Cebolla (+ $0.25)</label>
+        </div>
+    </div>
+
+    <!-- Comentarios para nachos ahora está debajo de los ingredientes opcionales -->
+    <div class="form-group">
+        <label for="nachosComments">Comentarios para Nachos:</label>
+        <textarea name="nachosComments" id="nachosComments"></textarea>
+    </div>
+
+    <label for="elotes">Elotes locos ($1 cada uno):</label>
+    <input type="number" name="elotes" id="elotes" min="0" value="0"><br>
+
+    <label for="elotesComments">Comentarios para Elotes:</label>
+    <textarea name="elotesComments" id="elotesComments"></textarea>
+
+    <input type="submit" value="Finalizar Orden">
+</form>
+
+<style>
+    .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .checkbox-item:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .checkbox-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .checkbox-item label {
+        font-size: 1rem;
+        color: #34495e;
+    }
+
+    .checkbox-item input {
+        margin-right: 10px;
+    }
+
+    /* Asegura que los comentarios estén en una nueva línea */
+    .form-group {
+        margin-top: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group textarea {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+</style>
+
+    <script>
+        document.getElementById("orderBtn").addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("orderForm").style.display = "block";
+            window.scrollTo({ top: document.getElementById("orderForm").offsetTop, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
